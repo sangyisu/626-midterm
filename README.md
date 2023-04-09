@@ -42,7 +42,7 @@ and the accuracy is 1.
 
 # leaderboard performance
 ## task 1
-sangyi
+SID = sangyi
 
 ![Screenshot 2023-04-08 231853](https://user-images.githubusercontent.com/117102360/230752329-a83cc68b-8db3-4d53-ac32-74435dab2bd7.png)
 
