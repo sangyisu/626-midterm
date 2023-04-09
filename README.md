@@ -12,6 +12,7 @@ its performance based on the training data is showed as follow:
 ![Screenshot 2023-04-08 194956](https://user-images.githubusercontent.com/117102360/230747209-e7e4eab9-2698-4b88-84b0-699dc463c35c.png)
 
 and the accuracy is 1.(don't need to improve the performance)
+
 ![Screenshot 2023-04-08 201842](https://user-images.githubusercontent.com/117102360/230747912-35893e3e-971b-4621-aee6-80d2eab810d7.png)
 
 
@@ -40,4 +41,16 @@ and the accuracy is 1.
 ![Screenshot 2023-04-08 201842](https://user-images.githubusercontent.com/117102360/230747908-81c158df-bbaf-4793-8c28-fd7f68aef901.png)
 
 # leaderboard performance
+## task 1
+
+## task 2
+
+# further improvement
+according to the results below, we can see that many variables are highly correlated. Thus, we can delete or merge some highly correlated variables into one new variable.
+
+![Screenshot 2023-04-08 202507](https://user-images.githubusercontent.com/117102360/230748044-9b332eb9-0558-4a5e-8340-b29f65e7a941.png)
+
+![Screenshot 2023-04-08 202525](https://user-images.githubusercontent.com/117102360/230748050-fbd8357d-9ad1-4f74-ac80-82c5600917ff.png)
+
+
 
