@@ -1,0 +1,99 @@
+---
+title: "Untitled"
+author: "SSY"
+date: "2023-03-24"
+output: html_document
+---
+
+```{r}
+training.data = read.table("training_data.txt",header = T)
+test.data = read.table("test_data.txt",header = T)
+```
+
+
+# multiclass
+```{r}
+mydata= training.data
+mydata$m = ifelse(mydata$activity >=7,7,
+ifelse(mydata$activity==1,1,
+ifelse(mydata$activity==2,2,
+                                       ifelse(mydata$activity==3,3,
+                                              ifelse(mydata$activity==4,4,
+                                                     ifelse(mydata$activity==5,5,6))))))
+multidata = mydata[,-2]
+```
+# tuning cost parameters
+```{r}
+library(e1071)
+svm.fit = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=10)
+print(svm.fit)
+```
+
+```{r}
+svm.fit1 = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=20)
+print(svm.fit1)
+```
+```{r}
+svm.fit2 = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=40)
+print(svm.fit2)
+```
+```{r}
+svm.fit3 = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=100)
+print(svm.fit3)
+```
+```{r}
+svm.fit4 = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=200)
+print(svm.fit4)
+```
+
+```{r}
+svm.fit5 = svm(as.factor(m)~.,data = multidata,kernel = "radial",cost=1)
+print(svm.fit5)
+```
+# choose the model with minimum of number of support vectors
+```{r}
+testing = test.data
+pred = predict(svm.fit3,testing)
+length(pred)
+sum(as.numeric(pred))
+result = pred
+```
+
+```{r}
+which(as.numeric(result)>7)
+```
+
+```{r}
+submit = data.frame(
+  result = as.numeric(result)
+)
+write.table(submit, file = "multiclass_sangyi.txt", row.names = F, col.names = F)
+```
+# SPV table
+```{r}
+library(ggplot2)
+spv = data.frame(cost = c(1,10,20,40,100,200),SPV= c(2531,2119,2100,2081,2080,2080))
+ggplot(spv,aes(cost,SPV))+geom_line()
+```
+# based on training data with the first model
+```{r}
+pred.m0 = predict(svm.fit,training.m)
+length(pred.m0)
+sum(as.numeric(pred.m0))
+result.m0 = pred.m0
+true.m0 = mydata$m
+table(result.m0,true.m0)
+mean(result.m0==true.m0)
+```
+
+# based on training data with the best model
+```{r}
+training.m = training.data[,-2]
+pred.m0 = predict(svm.fit3,training.m)
+length(pred.m0)
+sum(as.numeric(pred.m0))
+result.m0 = pred.m0
+true.m0 = mydata$m
+table(result.m0,true.m0)
+mean(result.m0==true.m0)
+```
