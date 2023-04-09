@@ -1,0 +1,45 @@
+```{r}
+training.data = read.table("training_data.txt",header = T)
+test.data = read.table("test_data.txt",header = T)
+```
+
+
+# new outcome
+```{r}
+training.data$sd = ifelse(training.data$activity == 1|training.data$activity ==2|training.data$activity ==3,1,0)
+mydata = training.data[,-2]
+```
+
+
+# glm fit
+```{r}
+#visual
+glm.fit = glm(as.factor(sd)~.,data = mydata,family = binomial)
+```
+# based on testing data
+```{r}
+testing = test.data
+glm.probs = predict(glm.fit,testing,type = "response")
+glm.pred = rep(0,dim(testing)[1])
+glm.pred[glm.probs>0.5]=1
+result = glm.pred
+```
+
+```{r}
+submit = data.frame(
+  result = as.numeric(result)
+)
+write.table(submit, file = "binary_sangyi.txt", row.names = F, col.names = F)
+```
+
+#based on  training data
+```{r}
+glm.probs0 = predict(glm.fit,training.data,type = "response")
+glm.pred0 = rep(0,dim(training.data)[1])
+glm.pred0[glm.probs0>0.5]=1
+result0 = glm.pred0
+true.b = mydata$sd
+table1 = table(glm.pred0,true.b)
+data.frame(table1)
+mean(glm.pred0==true.b)
+```
