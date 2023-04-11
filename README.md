@@ -43,10 +43,20 @@ and the accuracy is 1.
 # leaderboard performance
 ## task 1
 SID = sangyi
+accuracy = 1.000
 
 ![Screenshot 2023-04-08 231853](https://user-images.githubusercontent.com/117102360/230752329-a83cc68b-8db3-4d53-ac32-74435dab2bd7.png)
 
 ## task 2
+SID = sangyi
+accuracy = 0.951
+
+![Screenshot 2023-04-09 163549](https://user-images.githubusercontent.com/117102360/231312050-99d1dcb2-35a6-4f5b-9100-83686c91a54a.png)
+
+accuracy = 0.958
+
+![Screenshot 2023-04-11 192100](https://user-images.githubusercontent.com/117102360/231312061-35f69396-5e81-4d10-b5d0-312873cb4986.png)
+
 
 # further improvement
 according to the results below, we can see that many variables are highly correlated. Thus, we can delete or merge some highly correlated variables into one new variable.
